@@ -2,8 +2,8 @@ package svc
 
 import (
 	"fmt"
+	"github.com/admgo/admgo/lib/db"
 	"github.com/admgo/admgo/services/auth/api/internal/config"
-	"github.com/admgo/admgo/services/auth/db"
 	"gorm.io/gorm"
 )
 

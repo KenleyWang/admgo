@@ -2,6 +2,7 @@ package db
 
 import (
 	"fmt"
+	"github.com/admgo/admgo/lib/db/config"
 	"log"
 	"os"
 	"path/filepath"
@@ -11,8 +12,6 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-
-	"github.com/admgo/admgo/services/auth/db/config"
 )
 
 const (

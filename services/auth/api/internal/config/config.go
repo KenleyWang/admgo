@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/admgo/admgo/services/auth/db/config"
+	"github.com/admgo/admgo/lib/db/config"
 	"github.com/zeromicro/go-zero/rest"
 )
 
