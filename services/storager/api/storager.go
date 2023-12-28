@@ -4,15 +4,15 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/admgo/admgo/services/storager/storager/internal/config"
-	"github.com/admgo/admgo/services/storager/storager/internal/handler"
-	"github.com/admgo/admgo/services/storager/storager/internal/svc"
+	"github.com/admgo/admgo/services/storager/api/internal/config"
+	"github.com/admgo/admgo/services/storager/api/internal/handler"
+	"github.com/admgo/admgo/services/storager/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"
 )
 
-var configFile = flag.String("f", "etc/storager-api.yaml", "the config file")
+var configFile = flag.String("f", "etc/api-api.yaml", "the config file")
 
 func main() {
 	flag.Parse()

@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
-	"github.com/admgo/admgo/services/storager/storager/internal/logic"
-	"github.com/admgo/admgo/services/storager/storager/internal/svc"
-	"github.com/admgo/admgo/services/storager/storager/internal/types"
+	"github.com/admgo/admgo/services/storager/api/internal/logic"
+	"github.com/admgo/admgo/services/storager/api/internal/svc"
+	"github.com/admgo/admgo/services/storager/api/internal/types"
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 

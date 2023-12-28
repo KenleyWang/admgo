@@ -1,7 +1,7 @@
 package svc
 
 import (
-	"github.com/admgo/admgo/services/storager/storager/internal/config"
+	"github.com/admgo/admgo/services/storager/api/internal/config"
 )
 
 type ServiceContext struct {
