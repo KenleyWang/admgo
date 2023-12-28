@@ -2,7 +2,6 @@ package db
 
 import (
 	"fmt"
-	"github.com/admgo/admgo/common/db/core"
 	"log"
 	"os"
 	"path/filepath"
@@ -13,7 +12,7 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 
-	"github.com/admgo/admgo/common/db/config"
+	"github.com/admgo/admgo/services/auth/db/config"
 )
 
 const (
@@ -107,7 +106,7 @@ func getDBInstance(conf config.DBItemConf, confLog config.DBLog, env string, hom
 			dbLogger = log.New(os.Stdout, "", log.LstdFlags)
 		}
 
-		gLogger = core.New(dbLogger, logger.Config{
+		gLogger = New(dbLogger, logger.Config{
 			SlowThreshold:             200 * time.Millisecond,
 			LogLevel:                  l,
 			IgnoreRecordNotFoundError: false,

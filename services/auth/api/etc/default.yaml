@@ -1,7 +1,7 @@
-env: "prod"
-name: "admgo"
-http:
-  listen: ":8080"
+name: auth-api
+host: 0.0.0.0
+port: 8888
+mode: "pro"
 log:
   level: "debug"
 
@@ -50,11 +50,11 @@ db:
       max_idle_conns: 5  # the max idle connect count
       max_open_conns: 1000  # the max open connect count
     read:
-      host: ""
+      host: "10.17.25.162"
       port: "3306"
-      database: ""
-      username: ""
-      password: ""
+      database: "mysql"
+      username: "admgo"
+      password: "m9uSFL7duAVXfeAwGUSG"
       charset: "utf8mb4"
       timeout: 50000        # connect db timeout, unit: ms
       write_time_out: 50000  # write data timeout, unit: ms
