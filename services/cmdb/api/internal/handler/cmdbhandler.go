@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
-	"github.com/admgo/admgo/services/cmdb/cmdb/internal/logic"
-	"github.com/admgo/admgo/services/cmdb/cmdb/internal/svc"
-	"github.com/admgo/admgo/services/cmdb/cmdb/internal/types"
+	"github.com/admgo/admgo/services/cmdb/api/internal/logic"
+	"github.com/admgo/admgo/services/cmdb/api/internal/svc"
+	"github.com/admgo/admgo/services/cmdb/api/internal/types"
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 

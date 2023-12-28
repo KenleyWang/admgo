@@ -1,7 +1,7 @@
 package svc
 
 import (
-	"github.com/admgo/admgo/services/cmdb/cmdb/internal/config"
+	"github.com/admgo/admgo/services/cmdb/api/internal/config"
 )
 
 type ServiceContext struct {

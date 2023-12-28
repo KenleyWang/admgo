@@ -3,8 +3,8 @@ package logic
 import (
 	"context"
 
-	"github.com/admgo/admgo/services/cmdb/cmdb/internal/svc"
-	"github.com/admgo/admgo/services/cmdb/cmdb/internal/types"
+	"github.com/admgo/admgo/services/cmdb/api/internal/svc"
+	"github.com/admgo/admgo/services/cmdb/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

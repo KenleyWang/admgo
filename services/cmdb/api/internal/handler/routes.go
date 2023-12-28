@@ -4,7 +4,7 @@ package handler
 import (
 	"net/http"
 
-	"github.com/admgo/admgo/services/cmdb/cmdb/internal/svc"
+	"github.com/admgo/admgo/services/cmdb/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )
