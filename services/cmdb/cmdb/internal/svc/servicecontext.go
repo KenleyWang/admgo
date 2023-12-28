@@ -1,0 +1,15 @@
+package svc
+
+import (
+	"github.com/admgo/admgo/services/cmdb/cmdb/internal/config"
+)
+
+type ServiceContext struct {
+	Config config.Config
+}
+
+func NewServiceContext(c config.Config) *ServiceContext {
+	return &ServiceContext{
+		Config: c,
+	}
+}
