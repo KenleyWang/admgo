@@ -1,12 +1,52 @@
-type Request {
-	Name string `path:"name,options=you|me"`
+syntax = "v1"
+
+info (
+	title:   "auth API"
+	desc:    "auth的api文件"
+	author:  "KenleyWang"
+	date:    "2023 年 12 月 29 日"
+	version: "v1"
+)
+
+type LoginReq {
+	UserName string `json:"username"`
+	PassWord string `json:"password"`
+}
+type LoginRsp {
+	Msg string `json:"msg"`
+}
+type LogoutReq {
+	UserName string `json:"username"`
+}
+type LogoutRsp {
+	Msg string `json:"msg"`
 }
 
-type Response {
-	Message string `json:"message"`
+////////////////////////////////////////Login////////////////////////////////////////
+@server (
+	prefix:     /auth/v1
+	group:      login
+	timeout:    10s
+	maxBytes:   1048576
+	handler: login
+)
+service Login {
+
+	// 定义只有请求体的接口，如更新信息
+	@handler login
+	post /login (LoginReq) returns (LoginRsp)
 }
 
-service auth-api {
-	@handler AuthHandler
-	get /from/:name(Request) returns (Response)
+@server (
+	prefix:     /auth/v1
+	group:      logout
+	timeout:    10s
+	middleware: AuthInterceptor
+	maxBytes:   1048576
+	handler: logout
+)
+service Login {
+
+	@handler logout
+	post /logout (LogoutReq) returns (LogoutRsp)
 }
