@@ -1,0 +1,110 @@
+syntax = "proto3";
+
+package service;
+option go_package="./pb";
+
+service User {
+  // 创建用户
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+  // 查找指定用户
+  rpc FindSingleUser (FindSingleUserRequest) returns (FindSingleUserResponse);
+  // 查找所有用户
+  rpc FindAllUser (FindAllUserRequest) returns (FindAllUserResponse);
+  // 删除用户
+  rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+  // 更新用户信息（包括邮箱、用户名称等）
+  rpc UpdateUserInfo (UpdateUserInfoRequest) returns (UpdateUserInfoResponse);
+  // 更新用户邮箱
+  rpc UpdateUserEmail (UpdateUserEmailRequest) returns (UpdateUserEmailResponse);
+  // 更新用户名称
+  rpc UpdateUserName (UpdateUserNameRequest) returns (UpdateUserNameResponse);
+  // 更新用户手机号
+  rpc UpdateUserPhone (UpdateUserPhoneRequest) returns (UpdateUserPhoneResponse);
+  // 更新用户员工号
+  rpc UpdateUserEmployeeNumber (UpdateUserEmployeeNumberRequest) returns (UpdateUserEmployeeNumberResponse);
+}
+message UserBase {
+  string name = 1; // 显示名
+  string userName = 2; // 用户名
+  int64 phone = 3; // 手机号
+  string email = 4; // 邮箱
+  int64 employeeNumber = 5; // 员工号
+}
+
+message CreateUserRequest {
+  int64 string = 1; // 显示名
+  string userName = 2; // 用户名
+  int64 phone = 3; // 手机号
+  string email = 4; // 邮箱
+  int64 employeeNumber = 5; // 员工号
+}
+message CreateUserResponse {
+}
+
+message FindSingleUserRequest {
+  int64 userId = 1; // 用户ID
+}
+
+message FindSingleUserResponse {
+  int64 string = 1; // 显示名
+  string userName = 2; // 用户名
+  int64 phone = 3; // 手机号
+  string email = 4; // 邮箱
+  int64 employeeNumber = 5; // 员工号
+}
+
+message FindAllUserRequest {
+  int64 userId = 1; // 用户ID
+}
+
+message FindAllUserResponse {
+  repeated UserBase userList = 1;
+}
+
+message DeleteUserRequest {
+  int64 userId = 1; // 用户ID
+}
+
+message DeleteUserResponse {
+}
+
+message UpdateUserInfoRequest {
+  optional string name = 1; // 显示名
+  optional int64 phone = 3; // 手机号
+  optional string email = 4; // 邮箱
+  optional int64 employeeNumber = 5; // 员工号
+}
+message UpdateUserInfoResponse {
+}
+
+message UpdateUserEmailRequest {
+  int64 userId = 1; // 用户ID
+  string email = 2; // 邮箱
+}
+
+message UpdateUserEmailResponse {
+}
+
+message UpdateUserNameRequest {
+  int64 userId = 1; // 用户ID
+  string name = 2; // 显示名
+}
+
+message UpdateUserNameResponse {
+}
+
+message UpdateUserPhoneRequest {
+  int64 userId = 1; // 用户ID
+  int64 phone = 3; // 手机号
+}
+
+message UpdateUserPhoneResponse {
+}
+
+message UpdateUserEmployeeNumberRequest {
+  int64 userId = 1; // 用户ID
+  int64 employeeNumber = 5; // 员工号
+}
+
+message UpdateUserEmployeeNumberResponse {
+}
