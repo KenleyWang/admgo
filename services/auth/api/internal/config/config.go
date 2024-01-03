@@ -1,11 +1,11 @@
 package config
 
 import (
-	"github.com/admgo/admgo/lib/db/config"
+	db "github.com/admgo/admgo/pkg/db/config"
 	"github.com/zeromicro/go-zero/rest"
 )
 
 type Config struct {
 	rest.RestConf
-	config.DBConfig
+	DB db.Config
 }
