@@ -2,6 +2,8 @@ package db
 
 import (
 	"context"
+	"fmt"
+	"github.com/admgo/admgo/pkg/db/config"
 	"time"
 
 	"github.com/zeromicro/go-zero/core/logx"
@@ -9,13 +11,6 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
-
-type Config struct {
-	DSN          string
-	MaxOpenConns int
-	MaxIdleConns int
-	MaxLifetime  int
-}
 
 type DB struct {
 	*gorm.DB
@@ -57,7 +52,7 @@ func (l *ormLog) Trace(ctx context.Context, begin time.Time, fc func() (sql stri
 	logx.WithContext(ctx).WithDuration(elapsed).Infof("[%.3fms] [rows:%v] %s", float64(elapsed.Nanoseconds())/1e6, rows, sql)
 }
 
-func NewMysql(conf *Config) (*DB, error) {
+func NewMysql(conf *config.Config) (*DB, error) {
 	if conf.MaxIdleConns == 0 {
 		conf.MaxIdleConns = 10
 	}
@@ -67,7 +62,34 @@ func NewMysql(conf *Config) (*DB, error) {
 	if conf.MaxLifetime == 0 {
 		conf.MaxLifetime = 3600
 	}
-	db, err := gorm.Open(mysql.Open(conf.DSN), &gorm.Config{
+	timeout := config.DBTimeout
+	if conf.TimeOut > 0 {
+		timeout = conf.TimeOut
+	}
+
+	writeTimeout := config.DBWriteTimeout
+	if conf.WriteTimeOut > 0 {
+		writeTimeout = conf.WriteTimeOut
+	}
+
+	readTimeout := config.DBReadTimeout
+	if conf.ReadTimeOut > 0 {
+		readTimeout = conf.ReadTimeOut
+	}
+
+	dsn := fmt.Sprintf(
+		"%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=True&loc=Local&timeout=%dms&writeTimeout=%dms&readTimeout=%dms",
+		conf.Username,
+		conf.Password,
+		conf.Host,
+		conf.Port,
+		conf.Database,
+		conf.Charset,
+		timeout,
+		writeTimeout,
+		readTimeout,
+	)
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
 		Logger: &ormLog{},
 	})
 	if err != nil {
@@ -89,7 +111,7 @@ func NewMysql(conf *Config) (*DB, error) {
 	return &DB{DB: db}, nil
 }
 
-func MustNewMysql(conf *Config) *DB {
+func MustNewMysql(conf *config.Config) *DB {
 	db, err := NewMysql(conf)
 	if err != nil {
 		panic(err)
