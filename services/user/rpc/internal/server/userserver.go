@@ -5,15 +5,15 @@ package server
 
 import (
 	"context"
-	pb2 "github.com/admgo/admgo/services/user/rpc/pb"
 
 	"github.com/admgo/admgo/services/user/rpc/internal/logic"
 	"github.com/admgo/admgo/services/user/rpc/internal/svc"
+	"github.com/admgo/admgo/services/user/rpc/pb"
 )
 
 type UserServer struct {
 	svcCtx *svc.ServiceContext
-	pb2.UnimplementedUserServer
+	pb.UnimplementedUserServer
 }
 
 func NewUserServer(svcCtx *svc.ServiceContext) *UserServer {
@@ -23,55 +23,55 @@ func NewUserServer(svcCtx *svc.ServiceContext) *UserServer {
 }
 
 // 创建用户
-func (s *UserServer) CreateUser(ctx context.Context, in *pb2.CreateUserRequest) (*pb2.CreateUserResponse, error) {
+func (s *UserServer) CreateUser(ctx context.Context, in *pb.CreateUserRequest) (*pb.CreateUserResponse, error) {
 	l := logic.NewCreateUserLogic(ctx, s.svcCtx)
 	return l.CreateUser(in)
 }
 
 // 查找指定用户
-func (s *UserServer) FindSingleUser(ctx context.Context, in *pb2.FindSingleUserRequest) (*pb2.FindSingleUserResponse, error) {
+func (s *UserServer) FindSingleUser(ctx context.Context, in *pb.FindSingleUserRequest) (*pb.FindSingleUserResponse, error) {
 	l := logic.NewFindSingleUserLogic(ctx, s.svcCtx)
 	return l.FindSingleUser(in)
 }
 
 // 查找所有用户
-func (s *UserServer) FindAllUser(ctx context.Context, in *pb2.FindAllUserRequest) (*pb2.FindAllUserResponse, error) {
+func (s *UserServer) FindAllUser(ctx context.Context, in *pb.FindAllUserRequest) (*pb.FindAllUserResponse, error) {
 	l := logic.NewFindAllUserLogic(ctx, s.svcCtx)
 	return l.FindAllUser(in)
 }
 
 // 删除用户
-func (s *UserServer) DeleteUser(ctx context.Context, in *pb2.DeleteUserRequest) (*pb2.DeleteUserResponse, error) {
+func (s *UserServer) DeleteUser(ctx context.Context, in *pb.DeleteUserRequest) (*pb.DeleteUserResponse, error) {
 	l := logic.NewDeleteUserLogic(ctx, s.svcCtx)
 	return l.DeleteUser(in)
 }
 
 // 更新用户信息（包括邮箱、用户名称等）
-func (s *UserServer) UpdateUserInfo(ctx context.Context, in *pb2.UpdateUserInfoRequest) (*pb2.UpdateUserInfoResponse, error) {
+func (s *UserServer) UpdateUserInfo(ctx context.Context, in *pb.UpdateUserInfoRequest) (*pb.UpdateUserInfoResponse, error) {
 	l := logic.NewUpdateUserInfoLogic(ctx, s.svcCtx)
 	return l.UpdateUserInfo(in)
 }
 
 // 更新用户邮箱
-func (s *UserServer) UpdateUserEmail(ctx context.Context, in *pb2.UpdateUserEmailRequest) (*pb2.UpdateUserEmailResponse, error) {
+func (s *UserServer) UpdateUserEmail(ctx context.Context, in *pb.UpdateUserEmailRequest) (*pb.UpdateUserEmailResponse, error) {
 	l := logic.NewUpdateUserEmailLogic(ctx, s.svcCtx)
 	return l.UpdateUserEmail(in)
 }
 
 // 更新用户名称
-func (s *UserServer) UpdateUserName(ctx context.Context, in *pb2.UpdateUserNameRequest) (*pb2.UpdateUserNameResponse, error) {
+func (s *UserServer) UpdateUserName(ctx context.Context, in *pb.UpdateUserNameRequest) (*pb.UpdateUserNameResponse, error) {
 	l := logic.NewUpdateUserNameLogic(ctx, s.svcCtx)
 	return l.UpdateUserName(in)
 }
 
 // 更新用户手机号
-func (s *UserServer) UpdateUserPhone(ctx context.Context, in *pb2.UpdateUserPhoneRequest) (*pb2.UpdateUserPhoneResponse, error) {
+func (s *UserServer) UpdateUserPhone(ctx context.Context, in *pb.UpdateUserPhoneRequest) (*pb.UpdateUserPhoneResponse, error) {
 	l := logic.NewUpdateUserPhoneLogic(ctx, s.svcCtx)
 	return l.UpdateUserPhone(in)
 }
 
 // 更新用户员工号
-func (s *UserServer) UpdateUserEmployeeNumber(ctx context.Context, in *pb2.UpdateUserEmployeeNumberRequest) (*pb2.UpdateUserEmployeeNumberResponse, error) {
+func (s *UserServer) UpdateUserEmployeeNumber(ctx context.Context, in *pb.UpdateUserEmployeeNumberRequest) (*pb.UpdateUserEmployeeNumberResponse, error) {
 	l := logic.NewUpdateUserEmployeeNumberLogic(ctx, s.svcCtx)
 	return l.UpdateUserEmployeeNumber(in)
 }

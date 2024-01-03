@@ -2,9 +2,10 @@ package logic
 
 import (
 	"context"
-	"github.com/admgo/admgo/services/user/rpc/pb"
 
 	"github.com/admgo/admgo/services/user/rpc/internal/svc"
+	"github.com/admgo/admgo/services/user/rpc/pb"
+
 	"github.com/zeromicro/go-zero/core/logx"
 )
 

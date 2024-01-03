@@ -4,28 +4,14 @@ import (
 	"context"
 	"database/sql"
 	"gorm.io/gorm"
-	"strings"
 	"time"
-
-	"github.com/zeromicro/go-zero/core/stores/builder"
-	"github.com/zeromicro/go-zero/core/stringx"
-)
-
-var (
-	userFieldNames          = builder.RawFieldNames(&User{})
-	userRows                = strings.Join(userFieldNames, ",")
-	userRowsExpectAutoSet   = strings.Join(stringx.Remove(userFieldNames, "`id`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), ",")
-	userRowsWithPlaceHolder = strings.Join(stringx.Remove(userFieldNames, "`id`", "`update_time`", "`create_at`", "`created_at`", "`create_time`", "`update_at`", "`updated_at`"), "=?,") + "=?"
 )
 
 type (
 	userModel interface {
-		Insert(ctx context.Context, data *User) (sql.Result, error)
+		Insert(ctx context.Context, data *User) error
 		FindOne(ctx context.Context, id int64) (*User, error)
-		FindOneByMobile(ctx context.Context, mobile string) (*User, error)
-		FindOneByName(ctx context.Context, name sql.NullString) (*User, error)
 		Update(ctx context.Context, data *User) error
-		Delete(ctx context.Context, id int64) error
 	}
 
 	defaultUserModel struct {
@@ -53,26 +39,26 @@ func newUserModel(conn *gorm.DB) *defaultUserModel {
 	}
 }
 
-func (m *defaultUserModel) Insert(ctx context.Context, data *Follow) error {
+func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
 	return m.db.WithContext(ctx).Create(data).Error
 }
 
-func (m *defaultUserModel) FindOne(ctx context.Context, id int64) (*Follow, error) {
-	var result Follow
+func (m *defaultUserModel) FindOne(ctx context.Context, id int64) (*User, error) {
+	var result User
 	err := m.db.WithContext(ctx).Where("id = ?", id).First(&result).Error
 	return &result, err
 }
 
-func (m *defaultUserModel) Update(ctx context.Context, data *Follow) error {
+func (m *defaultUserModel) Update(ctx context.Context, data *User) error {
 	return m.db.WithContext(ctx).Save(data).Error
 }
 
 func (m *defaultUserModel) UpdateFields(ctx context.Context, id int64, values map[string]interface{}) error {
-	return m.db.WithContext(ctx).Model(&Follow{}).Where("id = ?", id).Updates(values).Error
+	return m.db.WithContext(ctx).Model(&User{}).Where("id = ?", id).Updates(values).Error
 }
 
-func (m *defaultUserModel) FindByUserIDAndFollowedUserID(ctx context.Context, userId, followedUserId int64) (*Follow, error) {
-	var result Follow
+func (m *defaultUserModel) FindByUserIDAndFollowedUserID(ctx context.Context, userId, followedUserId int64) (*User, error) {
+	var result User
 	err := m.db.WithContext(ctx).
 		Where("user_id = ? AND followed_user_id = ?", userId, followedUserId).
 		First(&result).Error
@@ -83,8 +69,8 @@ func (m *defaultUserModel) FindByUserIDAndFollowedUserID(ctx context.Context, us
 	return &result, err
 }
 
-func (m *defaultUserModel) FindByUserId(ctx context.Context, userId int64, limit int) ([]*Follow, error) {
-	var result []*Follow
+func (m *defaultUserModel) FindByUserId(ctx context.Context, userId int64, limit int) ([]*User, error) {
+	var result []*User
 	err := m.db.WithContext(ctx).
 		Where("user_id = ? AND follow_status = ?", userId, 1).
 		Order("id desc").
@@ -94,8 +80,8 @@ func (m *defaultUserModel) FindByUserId(ctx context.Context, userId int64, limit
 	return result, err
 }
 
-func (m *defaultUserModel) FindByFollowedUserIds(ctx context.Context, userId int64, followedUserIds []int64) ([]*Follow, error) {
-	var result []*Follow
+func (m *defaultUserModel) FindByFollowedUserIds(ctx context.Context, userId int64, followedUserIds []int64) ([]*User, error) {
+	var result []*User
 	err := m.db.WithContext(ctx).
 		Where("user_id = ?", userId).
 		Where("followed_user_id in (?)", followedUserIds).
@@ -104,8 +90,8 @@ func (m *defaultUserModel) FindByFollowedUserIds(ctx context.Context, userId int
 	return result, err
 }
 
-func (m *defaultUserModel) FindByFollowedUserId(ctx context.Context, userId int64, limit int) ([]*Follow, error) {
-	var result []*Follow
+func (m *defaultUserModel) FindByFollowedUserId(ctx context.Context, userId int64, limit int) ([]*User, error) {
+	var result []*User
 	err := m.db.WithContext(ctx).
 		Where("followed_user_id = ? AND follow_status = ?", userId, 1).
 		Order("id desc").
