@@ -26,6 +26,10 @@ func NewFindSingleUserLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Fi
 // 查找指定用户
 func (l *FindSingleUserLogic) FindSingleUser(in *pb.FindSingleUserRequest) (*pb.FindSingleUserResponse, error) {
 	// todo: add your logic here and delete this line
+	a, err := l.svcCtx.UserModel.FindOne(l.ctx, in.UserId)
+	println(a)
 
-	return &pb.FindSingleUserResponse{}, nil
+	return &pb.FindSingleUserResponse{
+		UserName: a.UserName,
+	}, err
 }

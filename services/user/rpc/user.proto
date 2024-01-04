@@ -26,17 +26,17 @@ service User {
 message UserBase {
   string name = 1; // 显示名
   string userName = 2; // 用户名
-  int64 phone = 3; // 手机号
+  string phone = 3; // 手机号
   string email = 4; // 邮箱
-  int64 employeeNumber = 5; // 员工号
+  string employeeNumber = 5; // 员工号
 }
 
 message CreateUserRequest {
-  int64 string = 1; // 显示名
+  string name = 1; // 显示名
   string userName = 2; // 用户名
-  int64 phone = 3; // 手机号
+  string phone = 3; // 手机号
   string email = 4; // 邮箱
-  int64 employeeNumber = 5; // 员工号
+  string employeeNumber = 5; // 员工号
 }
 message CreateUserResponse {
 }
@@ -46,11 +46,11 @@ message FindSingleUserRequest {
 }
 
 message FindSingleUserResponse {
-  int64 string = 1; // 显示名
+  string name = 1; // 显示名
   string userName = 2; // 用户名
-  int64 phone = 3; // 手机号
+  string phone = 3; // 手机号
   string email = 4; // 邮箱
-  int64 employeeNumber = 5; // 员工号
+  string employeeNumber = 5; // 员工号
 }
 
 message FindAllUserRequest {
@@ -95,7 +95,7 @@ message UpdateUserNameResponse {
 
 message UpdateUserPhoneRequest {
   int64 userId = 1; // 用户ID
-  int64 phone = 3; // 手机号
+  string phone = 3; // 手机号
 }
 
 message UpdateUserPhoneResponse {
@@ -103,7 +103,7 @@ message UpdateUserPhoneResponse {
 
 message UpdateUserEmployeeNumberRequest {
   int64 userId = 1; // 用户ID
-  int64 employeeNumber = 5; // 员工号
+  string employeeNumber = 5; // 员工号
 }
 
 message UpdateUserEmployeeNumberResponse {
