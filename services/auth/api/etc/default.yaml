@@ -56,3 +56,7 @@ web_server_log:
   output: "file" # file, stdout
   skip_paths:
     - "/favicon.ico"
+
+rpc:
+  user.rpc:
+    target: "127.0.0.1:8080"

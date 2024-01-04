@@ -3,6 +3,7 @@ package login
 import (
 	"context"
 	"database/sql"
+	"github.com/admgo/admgo/services/user/rpc/user"
 	"time"
 
 	"github.com/admgo/admgo/services/auth/api/internal/svc"
@@ -44,6 +45,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginRsp, err error
 
 	// Raw SQL
 	l.svcCtx.DB.Raw("SELECT name FROM users WHERE name = ?", "users").Scan(&result)
+	_, err := l.svcCtx.UserRPC.FindSingleUser(l.ctx, &user.FindSingleUserRequest{UserId: 1})
 
 	return
 
