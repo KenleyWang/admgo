@@ -4,7 +4,7 @@ Mode: dev
 db:
   host: "10.17.25.162"
   port: "3306"
-  database: "mysql"
+  database: "admgo"
   username: "admgo"
   password: "m9uSFL7duAVXfeAwGUSG"
   charset: "utf8mb4"

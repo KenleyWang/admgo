@@ -1,10 +1,8 @@
-package model
+package models
 
 import (
 	"context"
-	"database/sql"
 	"gorm.io/gorm"
-	"time"
 )
 
 type (
@@ -20,22 +18,24 @@ type (
 	}
 
 	User struct {
-		Id       int64          `db:"id"`
-		Name     sql.NullString `db:"name"`     // The username
-		Password string         `db:"password"` // The user password
-		Mobile   string         `db:"mobile"`   // The mobile phone number
-		Gender   string         `db:"gender"`   // gender,male|female|unknown
-		Nickname string         `db:"nickname"` // The nickname
-		Type     int64          `db:"type"`     // The user type, 0:normal,1:vip, for test golang keyword
-		CreateAt sql.NullTime   `db:"create_at"`
-		UpdateAt time.Time      `db:"update_at"`
+		BaseModel
+		Name           string `gorm:"column:name;type:varchar(30);not null;comment:显示名"`
+		UserName       string `gorm:"column:username;type:varchar(30);not null;unique;comment:用户名(唯一)"`
+		Email          string `gorm:"column:email;type:varchar(60);comment:邮箱"`
+		EmployeeNumber string `gorm:"column:employee_number;type:varchar(30);comment:员工号"`
+		Phone          string `gorm:"column:phone;type:varchar(30);comment:手机号"`
+		Avatar         string `gorm:"column:avatar;type:varchar(255);comment:头像"`
 	}
 )
+
+func (emp User) TableName() string {
+	return "users"
+}
 
 func newUserModel(conn *gorm.DB) *defaultUserModel {
 	return &defaultUserModel{
 		db:    conn,
-		table: "`user`",
+		table: "`users`",
 	}
 }
 

@@ -1,18 +1,18 @@
-package svc
+package main
 
 import (
+	"flag"
 	"github.com/admgo/admgo/pkg/db"
 	dbconfig "github.com/admgo/admgo/pkg/db/config"
 	"github.com/admgo/admgo/services/user/rpc/internal/config"
 	"github.com/admgo/admgo/services/user/rpc/internal/db/models"
+	"github.com/zeromicro/go-zero/core/conf"
 )
 
-type ServiceContext struct {
-	Config    config.Config
-	UserModel models.UserModel
-}
-
-func NewServiceContext(c config.Config) *ServiceContext {
+func main() {
+	var configFile = flag.String("f", "../../etc/user.yaml", "the config file")
+	var c config.Config
+	conf.MustLoad(*configFile, &c)
 	dbInstance := db.MustNewMysql(&dbconfig.Config{
 		Username:     c.DB.Username,
 		Password:     c.DB.Password,
@@ -26,8 +26,8 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		WriteTimeOut: c.DB.WriteTimeOut,
 		ReadTimeOut:  c.DB.ReadTimeOut,
 	})
-	return &ServiceContext{
-		Config:    c,
-		UserModel: models.NewUserModel(dbInstance.DB),
+	err := dbInstance.AutoMigrate(&models.User{})
+	if err != nil {
+		panic(err)
 	}
 }
