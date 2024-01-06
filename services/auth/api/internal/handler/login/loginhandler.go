@@ -1,7 +1,6 @@
 package login
 
 import (
-	"github.com/admgo/admgo/pkg/xcode"
 	"net/http"
 
 	"github.com/admgo/admgo/services/auth/api/internal/logic/login"
@@ -14,7 +13,7 @@ func LoginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.LoginReq
 		if err := httpx.Parse(r, &req); err != nil {
-			httpx.ErrorCtx(r.Context(), w, xcode.BadRequestsCode(err))
+			httpx.ErrorCtx(r.Context(), w, err)
 			return
 		}
 

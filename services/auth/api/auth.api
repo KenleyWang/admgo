@@ -8,30 +8,38 @@ info (
 	version: "v1"
 )
 
+type BaseRsp {
+	Code int32       `json:"code"`
+	Msg  string      `json:"msg"`
+	Data interface{} `json:"data,omitempty"`
+}
+
 type LoginReq {
-	UserName string `json:"username"`
+	UserName string `json:"username,options=[foo,bar]"`
 	PassWord string `json:"password"`
 }
+
 type LoginRsp {
-	Msg string `json:"msg"`
+	BaseRsp
 }
+
 type LogoutReq {
 	UserName string `json:"username"`
 }
+
 type LogoutRsp {
-	Msg string `json:"msg"`
+	BaseRsp
 }
 
 ////////////////////////////////////////Login////////////////////////////////////////
 @server (
-	prefix:     /auth/v1
-	group:      login
-	timeout:    10s
-	maxBytes:   1048576
-	handler: login
+	prefix:   /auth/v1
+	group:    login
+	timeout:  10s
+	maxBytes: 1048576
+	handler:  login
 )
-service Login {
-
+service Auth {
 	// 定义只有请求体的接口，如更新信息
 	@handler login
 	post /login (LoginReq) returns (LoginRsp)
@@ -43,10 +51,10 @@ service Login {
 	timeout:    10s
 	middleware: AuthInterceptor
 	maxBytes:   1048576
-	handler: logout
+	handler:    logout
 )
-service Login {
-
+service Auth {
 	@handler logout
 	post /logout (LogoutReq) returns (LogoutRsp)
 }
+
