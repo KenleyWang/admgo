@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/admgo/admgo/pkg/response"
+	"github.com/admgo/admgo/pkg/validator"
 	"github.com/admgo/admgo/pkg/xcode"
 	"github.com/admgo/admgo/services/auth/api/internal/config"
 	"github.com/admgo/admgo/services/auth/api/internal/handler"
@@ -27,6 +29,8 @@ func main() {
 	handler.RegisterHandlers(server, ctx)
 
 	httpx.SetErrorHandler(xcode.ErrHandler)
+	httpx.SetValidator(validator.NewValidate())
+	httpx.SetOkHandler(response.OKResponse)
 
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
 	server.Start()

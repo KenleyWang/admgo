@@ -27,12 +27,7 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginRsp, err error) {
 	_, err = l.svcCtx.UserRPC.FindSingleUser(l.ctx, &user.FindSingleUserRequest{UserId: 1})
 
-	rsp := types.BaseRsp{
-		Msg:  "success",
-		Code: 0,
-	}
-
 	return &types.LoginRsp{
-		BaseRsp: rsp,
+		PassWord: "awda",
 	}, err
 }

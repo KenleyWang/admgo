@@ -8,28 +8,20 @@ info (
 	version: "v1"
 )
 
-type BaseRsp {
-	Code int32       `json:"code"`
-	Msg  string      `json:"msg"`
-	Data interface{} `json:"data,omitempty"`
-}
-
 type LoginReq {
-	UserName string `json:"username,options=[foo,bar]"`
-	PassWord string `json:"password"`
+	UserName string `json:"username,optional" validate:"required"`
+	PassWord string `json:"password,optional"`
 }
 
 type LoginRsp {
-	BaseRsp
+	PassWord string `json:"password,optional"`
 }
 
 type LogoutReq {
-	UserName string `json:"username"`
+	UserName string `json:"username,optional"`
 }
 
-type LogoutRsp {
-	BaseRsp
-}
+type LogoutRsp {}
 
 ////////////////////////////////////////Login////////////////////////////////////////
 @server (
