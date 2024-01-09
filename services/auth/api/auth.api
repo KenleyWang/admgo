@@ -9,16 +9,16 @@ info (
 )
 
 type LoginReq {
-	UserName string `json:"username,optional" validate:"required"`
-	PassWord string `json:"password,optional"`
+	UserName string `json:"username,optional,omitempty" validate:"required"`
+	PassWord string `json:"password,optional,omitempty"`
 }
 
 type LoginRsp {
-	PassWord string `json:"password,optional"`
+	PassWord string `json:"password,optional,omitempty"`
 }
 
 type LogoutReq {
-	UserName string `json:"username,optional"`
+	UserName string `json:"username,optional,omitempty"`
 }
 
 type LogoutRsp {}
@@ -41,7 +41,7 @@ service Auth {
 	prefix:     /auth/v1
 	group:      logout
 	timeout:    10s
-	middleware: AuthInterceptor
+	middleware: AuthenticationMiddleware,CSRFTokenMiddleware
 	maxBytes:   1048576
 	handler:    logout
 )

@@ -2,16 +2,16 @@
 package types
 
 type LoginReq struct {
-	UserName string `json:"username,optional" validate:"required"`
-	PassWord string `json:"password,optional"`
+	UserName string `json:"username,optional,omitempty" validate:"required"`
+	PassWord string `json:"password,optional,omitempty"`
 }
 
 type LoginRsp struct {
-	PassWord string `json:"password,optional"`
+	PassWord string `json:"password,optional,omitempty"`
 }
 
 type LogoutReq struct {
-	UserName string `json:"username,optional"`
+	UserName string `json:"username,optional,omitempty"`
 }
 
 type LogoutRsp struct {

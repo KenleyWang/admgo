@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/admgo/admgo/pkg/errorx"
 	"github.com/admgo/admgo/pkg/response"
 	"github.com/admgo/admgo/pkg/validator"
-	"github.com/admgo/admgo/pkg/xcode"
 	"github.com/admgo/admgo/services/auth/api/internal/config"
 	"github.com/admgo/admgo/services/auth/api/internal/handler"
 	"github.com/admgo/admgo/services/auth/api/internal/svc"
@@ -28,7 +28,7 @@ func main() {
 	ctx := svc.NewServiceContext(c)
 	handler.RegisterHandlers(server, ctx)
 
-	httpx.SetErrorHandler(xcode.ErrHandler)
+	httpx.SetErrorHandler(errorx.ErrHandler)
 	httpx.SetValidator(validator.NewValidate())
 	httpx.SetOkHandler(response.OKResponse)
 
