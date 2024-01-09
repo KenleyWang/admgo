@@ -1,1 +1,1 @@
- goctl api --api ./auth.api go -dir ./
+ goctl api --api ./auth.api go -dir ./ --style goZero
