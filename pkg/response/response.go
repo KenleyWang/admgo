@@ -8,22 +8,37 @@ import (
 type okRsp struct {
 	Code int32       `json:"code"`
 	Msg  string      `json:"msg"`
-	Data interface{} `json:"data,omitempty"`
+	Data interface{} `json:"data,optional,omitempty"`
 }
 
 func OKResponse(ctx context.Context, v any) any {
-	//判断是否是空结构体，是的话将v置为nil
-	t_v := reflect.TypeOf(v)
-	if t_v.Kind() == reflect.Ptr {
-		if t_v.Elem().Kind() == reflect.Struct {
-			if t_v.Elem().NumField() == 0 {
+	val := reflect.ValueOf(v)
+
+	// 如果传入的是指针，则获取其指向的值
+	if val.Kind() == reflect.Ptr {
+		val = val.Elem()
+	}
+
+	switch val.Kind() {
+	case reflect.Struct:
+		// 如果是结构体，则遍历其字段进行检查
+		for i := 0; i < val.NumField(); i++ {
+			field := val.Field(i)
+
+			// 检查字段是否为空值
+			if reflect.DeepEqual(field.Interface(), reflect.Zero(field.Type()).Interface()) {
 				v = nil
 			}
 		}
-	}
-	//判断是否是空接口类型，是的话将v置为nil
-	if t_v.Kind() == reflect.Interface {
+	case reflect.Interface:
 		v = nil
+	case reflect.Invalid:
+		v = nil
+	default:
+		// 如果不是结构体，直接检查该值是否为空值
+		if reflect.DeepEqual(val.Interface(), reflect.Zero(val.Type()).Interface()) {
+			v = nil
+		}
 	}
 	return &okRsp{
 		Code: 0,
