@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/admgo/admgo/common/interceptor"
 	"github.com/admgo/admgo/services/user/rpc/pb"
 
 	"github.com/admgo/admgo/services/user/rpc/internal/config"
@@ -32,6 +33,7 @@ func main() {
 		}
 	})
 	defer s.Stop()
+	s.AddUnaryInterceptors(interceptor.ServerErrorInterceptor())
 
 	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
 	s.Start()

@@ -6,8 +6,10 @@ option go_package="./pb";
 service User {
   // 创建用户
   rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
-  // 查找指定用户
-  rpc FindSingleUser (FindSingleUserRequest) returns (FindSingleUserResponse);
+  // 根据用户ID查找指定用户
+  rpc FindSingleUserByUserID (FindSingleUserByUserIDRequest) returns (FindSingleUserByUserIDResponse);
+  // 根据用户名密码查找指定用户
+  rpc FindSingleUserByUsernameAndPassword (FindSingleUserByUsernameAndPasswordRequest) returns (FindSingleUserByUsernameAndPasswordResponse);
   // 查找所有用户
   rpc FindAllUser (FindAllUserRequest) returns (FindAllUserResponse);
   // 删除用户
@@ -29,6 +31,8 @@ message UserBase {
   string phone = 3; // 手机号
   string email = 4; // 邮箱
   string employeeNumber = 5; // 员工号
+  string avatar = 6; // 头像
+  bool isAdmin = 7; // 是否是管理员
 }
 
 message CreateUserRequest {
@@ -41,20 +45,39 @@ message CreateUserRequest {
 message CreateUserResponse {
 }
 
-message FindSingleUserRequest {
-  int64 userId = 1; // 用户ID
+message FindSingleUserByUserIDRequest {
+  uint64 userId = 1; // 用户ID
 }
 
-message FindSingleUserResponse {
-  string name = 1; // 显示名
-  string userName = 2; // 用户名
-  string phone = 3; // 手机号
-  string email = 4; // 邮箱
-  string employeeNumber = 5; // 员工号
+message FindSingleUserByUserIDResponse {
+  uint64 userID = 1; // 显示名
+  string name = 2; // 显示名
+  string userName = 3; // 用户名
+  string phone = 4; // 手机号
+  string email = 5; // 邮箱
+  string employeeNumber = 6; // 员工号
+  string avatar = 7; // 头像
+  bool isAdmin = 8; // 是否是管理员
+}
+
+message FindSingleUserByUsernameAndPasswordRequest {
+  string userName = 1; // 用户名
+  string password = 2; // 用户名
+}
+
+message FindSingleUserByUsernameAndPasswordResponse {
+  uint64 userID = 1; // 显示名
+  string name = 2; // 显示名
+  string userName = 3; // 用户名
+  string phone = 4; // 手机号
+  string email = 5; // 邮箱
+  string employeeNumber = 6; // 员工号
+  string avatar = 7; // 头像
+  bool isAdmin = 8; // 是否是管理员
 }
 
 message FindAllUserRequest {
-  int64 userId = 1; // 用户ID
+  uint64 userId = 1; // 用户ID
 }
 
 message FindAllUserResponse {
@@ -62,7 +85,7 @@ message FindAllUserResponse {
 }
 
 message DeleteUserRequest {
-  int64 userId = 1; // 用户ID
+  uint64 userId = 1; // 用户ID
 }
 
 message DeleteUserResponse {
@@ -78,7 +101,7 @@ message UpdateUserInfoResponse {
 }
 
 message UpdateUserEmailRequest {
-  int64 userId = 1; // 用户ID
+  uint64 userId = 1; // 用户ID
   string email = 2; // 邮箱
 }
 
@@ -86,7 +109,7 @@ message UpdateUserEmailResponse {
 }
 
 message UpdateUserNameRequest {
-  int64 userId = 1; // 用户ID
+  uint64 userId = 1; // 用户ID
   string name = 2; // 显示名
 }
 
@@ -94,7 +117,7 @@ message UpdateUserNameResponse {
 }
 
 message UpdateUserPhoneRequest {
-  int64 userId = 1; // 用户ID
+  uint64 userId = 1; // 用户ID
   string phone = 3; // 手机号
 }
 
@@ -102,7 +125,7 @@ message UpdateUserPhoneResponse {
 }
 
 message UpdateUserEmployeeNumberRequest {
-  int64 userId = 1; // 用户ID
+  uint64 userId = 1; // 用户ID
   string employeeNumber = 5; // 员工号
 }
 

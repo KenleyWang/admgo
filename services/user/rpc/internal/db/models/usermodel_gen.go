@@ -10,6 +10,7 @@ type (
 		Insert(ctx context.Context, data *User) error
 		FindOne(ctx context.Context, id int64) (*User, error)
 		Update(ctx context.Context, data *User) error
+		FindByUserIDAndPassword(ctx context.Context, username string, password string) (*User, error)
 	}
 
 	defaultUserModel struct {
@@ -21,10 +22,12 @@ type (
 		BaseModel
 		Name           string `gorm:"column:name;type:varchar(30);not null;comment:显示名"`
 		UserName       string `gorm:"column:username;type:varchar(30);not null;unique;comment:用户名(唯一)"`
+		Password       string `gorm:"column:password;type:varchar(100);not null;comment:密码"`
 		Email          string `gorm:"column:email;type:varchar(60);comment:邮箱"`
 		EmployeeNumber string `gorm:"column:employee_number;type:varchar(30);comment:员工号"`
 		Phone          string `gorm:"column:phone;type:varchar(30);comment:手机号"`
 		Avatar         string `gorm:"column:avatar;type:varchar(255);comment:头像"`
+		IsAdmin        bool   `gorm:"column:is_admin;type:bool;not null;comment:是否是管理员"`
 	}
 )
 
@@ -57,10 +60,10 @@ func (m *defaultUserModel) UpdateFields(ctx context.Context, id int64, values ma
 	return m.db.WithContext(ctx).Model(&User{}).Where("id = ?", id).Updates(values).Error
 }
 
-func (m *defaultUserModel) FindByUserIDAndFollowedUserID(ctx context.Context, userId, followedUserId int64) (*User, error) {
+func (m *defaultUserModel) FindByUserIDAndPassword(ctx context.Context, username string, password string) (*User, error) {
 	var result User
 	err := m.db.WithContext(ctx).
-		Where("user_id = ? AND followed_user_id = ?", userId, followedUserId).
+		Where("username = ? AND password = ?", username, password).
 		First(&result).Error
 	if err == gorm.ErrRecordNotFound {
 		return nil, nil
