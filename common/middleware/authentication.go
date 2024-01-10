@@ -27,10 +27,10 @@ func (m *AuthenticationMiddleware) Handle(next http.HandlerFunc) http.HandlerFun
 
 		cookie, err := r.Cookie("user_token")
 		if err != nil {
-			httpx.Error(w, errorx.ServerErr)
+			httpx.Error(w, errorx.NoLogin)
 			return
 		}
-		isExist, err := m.sessionRedis.Exists("/auth/api/user_token/" + cookie.Value)
+		isExist, err := m.sessionRedis.Exists("/user/rest/user_token/" + cookie.Value)
 		if err != nil {
 			httpx.Error(w, errorx.ServerErrForRedis)
 			return
