@@ -1,0 +1,33 @@
+name: user
+host: 0.0.0.0
+port: 9602
+mode: "pro"
+log:
+  level: "debug"
+
+#监控
+prometheus:
+  host: 0.0.0.0
+  port: 9701
+  path: /metrics
+
+redis:
+  host: 10.17.25.162:6379
+
+db:
+  host: "10.17.25.162"
+  port: "3306"
+  database: "mysql"
+  username: "admgo"
+  password: "m9uSFL7duAVXfeAwGUSG"
+  charset: "utf8mb4"
+  timeout: 50000  # connect db timeout, unit: ms
+  write_timeout: 50000  # write data timeout, unit: ms
+  read_timeout: 50000  # read data timeout, unit: ms
+  max_lifetime: 3600
+  max_idle_conns: 5  # the max idle connect count
+  max_open_conns: 1000  # the max open connect count
+
+rpc:
+  user.rpc:
+    target: "127.0.0.1:8080"
