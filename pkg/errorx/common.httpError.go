@@ -2,7 +2,7 @@ package errorx
 
 var (
 	OK                        = NewHttpErr(0, "ok")
-	NoLogin                   = NewHttpErrAndSetHttpCode(403, 10001, "no login")
+	NoLogin                   = NewHttpErrAndSetHttpCode(401, 10001, "no login")
 	RequestErr                = NewHttpErr(40001, "INVALID_ARGUMENT")
 	Unauthorized              = NewHttpErr(40002, "UNAUTHENTICATED")
 	AccessDenied              = NewHttpErr(40003, "PERMISSION_DENIED")
