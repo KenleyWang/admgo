@@ -23,7 +23,7 @@ func NewFindSingleUserByUsernameAndPasswordLogic(ctx context.Context, svcCtx *sv
 	}
 }
 
-// 根据用户名密码查找指定用户
+// FindSingleUserByUsernameAndPassword 根据用户名密码查找指定用户
 func (l *FindSingleUserByUsernameAndPasswordLogic) FindSingleUserByUsernameAndPassword(in *pb.FindSingleUserByUsernameAndPasswordRequest) (*pb.FindSingleUserByUsernameAndPasswordResponse, error) {
 	data, err := l.svcCtx.UserModel.FindByUserIDAndPassword(l.ctx, in.UserName, in.Password)
 	if err != nil {
