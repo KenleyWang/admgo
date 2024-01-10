@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	var configFile = flag.String("f", "../../etc/user.yaml", "the config file")
+	var configFile = flag.String("f", "../../etc/rest.yaml", "the config file")
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 	dbInstance := db.MustNewMysql(&dbconfig.Config{
