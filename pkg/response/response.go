@@ -14,7 +14,7 @@ type okRsp struct {
 func OKResponse(ctx context.Context, v any) any {
 	val := reflect.ValueOf(v)
 
-	// 如果传入的是指针，则获取其指向的值
+	// 如果传入的是指针，则解引用
 	if val.Kind() == reflect.Ptr {
 		val = val.Elem()
 	}
@@ -22,9 +22,11 @@ func OKResponse(ctx context.Context, v any) any {
 	switch val.Kind() {
 	case reflect.Struct:
 		// 如果是结构体，则遍历其字段进行检查
+		if val.NumField() == 0 {
+			v = nil
+		}
 		for i := 0; i < val.NumField(); i++ {
 			field := val.Field(i)
-
 			// 检查字段是否为空值
 			if reflect.DeepEqual(field.Interface(), reflect.Zero(field.Type()).Interface()) {
 				v = nil
