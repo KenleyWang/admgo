@@ -17,12 +17,11 @@ func LoginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := login.NewLoginLogic(r.Context(), svcCtx)
+		l := login.NewLoginLogic(r.Context(), svcCtx, w, r)
 		resp, err := l.Login(&req)
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 		} else {
-			l.WriteUserTokenToHeader(w)
 			httpx.OkJsonCtx(r.Context(), w, resp)
 		}
 	}
