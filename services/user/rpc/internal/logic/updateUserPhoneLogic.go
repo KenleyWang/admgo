@@ -23,7 +23,7 @@ func NewUpdateUserPhoneLogic(ctx context.Context, svcCtx *svc.ServiceContext) *U
 	}
 }
 
-// 更新用户手机号
+// UpdateUserPhone 更新用户手机号
 func (l *UpdateUserPhoneLogic) UpdateUserPhone(in *pb.UpdateUserPhoneRequest) (*pb.UpdateUserPhoneResponse, error) {
 	// todo: add your logic here and delete this line
 

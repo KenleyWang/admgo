@@ -23,7 +23,7 @@ func NewFindSingleUserByUserIDLogic(ctx context.Context, svcCtx *svc.ServiceCont
 	}
 }
 
-// 根据用户ID查找指定用户
+// FindSingleUserByUserID 根据用户ID查找指定用户
 func (l *FindSingleUserByUserIDLogic) FindSingleUserByUserID(in *pb.FindSingleUserByUserIDRequest) (*pb.FindSingleUserByUserIDResponse, error) {
 
 	return &pb.FindSingleUserByUserIDResponse{}, nil

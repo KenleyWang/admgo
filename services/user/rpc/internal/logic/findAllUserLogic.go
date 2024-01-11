@@ -23,7 +23,7 @@ func NewFindAllUserLogic(ctx context.Context, svcCtx *svc.ServiceContext) *FindA
 	}
 }
 
-// 查找所有用户
+// FindAllUser 查找所有用户
 func (l *FindAllUserLogic) FindAllUser(in *pb.FindAllUserRequest) (*pb.FindAllUserResponse, error) {
 	// todo: add your logic here and delete this line
 

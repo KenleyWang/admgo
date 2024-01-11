@@ -23,7 +23,7 @@ func NewUpdateUserEmployeeNumberLogic(ctx context.Context, svcCtx *svc.ServiceCo
 	}
 }
 
-// 更新用户员工号
+// UpdateUserEmployeeNumber 更新用户员工号
 func (l *UpdateUserEmployeeNumberLogic) UpdateUserEmployeeNumber(in *pb.UpdateUserEmployeeNumberRequest) (*pb.UpdateUserEmployeeNumberResponse, error) {
 	// todo: add your logic here and delete this line
 

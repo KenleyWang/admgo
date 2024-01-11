@@ -23,7 +23,7 @@ func NewUpdateUserInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Up
 	}
 }
 
-// 更新用户信息（包括邮箱、用户名称等）
+// UpdateUserInfo 更新用户信息（包括邮箱、用户名称等）
 func (l *UpdateUserInfoLogic) UpdateUserInfo(in *pb.UpdateUserInfoRequest) (*pb.UpdateUserInfoResponse, error) {
 	// todo: add your logic here and delete this line
 

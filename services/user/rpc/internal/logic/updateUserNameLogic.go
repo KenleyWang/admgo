@@ -23,7 +23,7 @@ func NewUpdateUserNameLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Up
 	}
 }
 
-// 更新用户名称
+// UpdateUserName 更新用户名称
 func (l *UpdateUserNameLogic) UpdateUserName(in *pb.UpdateUserNameRequest) (*pb.UpdateUserNameResponse, error) {
 	// todo: add your logic here and delete this line
 

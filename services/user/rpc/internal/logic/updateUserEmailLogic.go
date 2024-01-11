@@ -23,7 +23,7 @@ func NewUpdateUserEmailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *U
 	}
 }
 
-// 更新用户邮箱
+// UpdateUserEmail 更新用户邮箱
 func (l *UpdateUserEmailLogic) UpdateUserEmail(in *pb.UpdateUserEmailRequest) (*pb.UpdateUserEmailResponse, error) {
 	// todo: add your logic here and delete this line
 

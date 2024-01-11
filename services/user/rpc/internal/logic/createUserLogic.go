@@ -24,7 +24,7 @@ func NewCreateUserLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Create
 	}
 }
 
-// 创建用户
+// CreateUser 创建用户
 func (l *CreateUserLogic) CreateUser(in *pb.CreateUserRequest) (*pb.CreateUserResponse, error) {
 	// todo: add your logic here and delete this line
 
