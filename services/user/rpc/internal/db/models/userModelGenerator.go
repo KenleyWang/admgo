@@ -14,8 +14,8 @@ type (
 	}
 
 	defaultUserModel struct {
-		db    *gorm.DB
-		table string
+		db        *gorm.DB
+		tableName string
 	}
 
 	User struct {
@@ -32,13 +32,13 @@ type (
 )
 
 func (emp User) TableName() string {
-	return "users"
+	return ModelPrefix + "_" + "users"
 }
 
 func newUserModel(conn *gorm.DB) *defaultUserModel {
 	return &defaultUserModel{
-		db:    conn,
-		table: "`users`",
+		db:        conn,
+		tableName: ModelPrefix + "_" + "users",
 	}
 }
 
