@@ -30,4 +30,4 @@ db:
 
 rpc:
   user.rpc:
-    target: "127.0.0.1:8080"
+    target: "127.0.0.1:9702"
