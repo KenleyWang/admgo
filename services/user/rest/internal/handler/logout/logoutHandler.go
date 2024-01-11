@@ -21,13 +21,24 @@ func LogoutHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 		}
-		ok, err := svcCtx.Redis.Del("/" + svcCtx.Config.Name + "/rest/user_token/" + sessionID.Value)
+		flag, err := svcCtx.Redis.DelCtx(r.Context(), "/"+svcCtx.Config.Name+"/rest/session/"+sessionID.Value)
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 		}
-		if ok == 0 {
+		if flag == 0 {
 			httpx.ErrorCtx(r.Context(), w, err)
 		}
+
+		userID := r.Context().Value("UserID").(string)
+		flag, err = svcCtx.Redis.SremCtx(r.Context(), "/"+svcCtx.Config.Name+"/rest/sessions/"+userID, sessionID.Value)
+
+		if err != nil {
+			httpx.ErrorCtx(r.Context(), w, err)
+		}
+		if flag == 0 {
+			httpx.ErrorCtx(r.Context(), w, err)
+		}
+
 		l := logout.NewLogoutLogic(r.Context(), svcCtx)
 
 		resp, err := l.Logout(&req)
