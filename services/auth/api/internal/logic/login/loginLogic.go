@@ -41,7 +41,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginRsp, err error
 
 	l.writeToSessionContent(rsp)
 	l.sessionID = random.GenerateSessionID()
-	err = l.svcCtx.Redis.HmsetCtx(l.ctx, "/"+l.svcCtx.Config.Name+"/api/user_token/"+l.sessionID, l.sessionContent)
+	err = l.svcCtx.Redis.HmsetCtx(l.ctx, "/"+l.svcCtx.Config.Name+"/rest/user_token/"+l.sessionID, l.sessionContent)
 	if err != nil {
 		return nil, err
 	}

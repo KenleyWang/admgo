@@ -25,6 +25,16 @@ func NewFindSingleUserByUserIDLogic(ctx context.Context, svcCtx *svc.ServiceCont
 
 // FindSingleUserByUserID 根据用户ID查找指定用户
 func (l *FindSingleUserByUserIDLogic) FindSingleUserByUserID(in *pb.FindSingleUserByUserIDRequest) (*pb.FindSingleUserByUserIDResponse, error) {
+	res, err := l.svcCtx.UserModel.FindOne(l.ctx, int64(in.UserID))
+	if err != nil {
+		return nil, err
+	}
 
-	return &pb.FindSingleUserByUserIDResponse{}, nil
+	return &pb.FindSingleUserByUserIDResponse{
+		Name:           res.Name,
+		UserName:       res.UserName,
+		Email:          res.Email,
+		Phone:          res.Phone,
+		EmployeeNumber: res.EmployeeNumber,
+	}, nil
 }

@@ -2,6 +2,7 @@ package register
 
 import (
 	"context"
+	"github.com/admgo/admgo/services/user/rpc/user"
 
 	"github.com/admgo/admgo/services/user/rest/internal/svc"
 	"github.com/admgo/admgo/services/user/rest/internal/types"
@@ -24,7 +25,12 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 }
 
 func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.RegisterRsp, err error) {
-	// todo: add your logic here and delete this line
-
-	return
+	_, err = l.svcCtx.UserRPC.CreateUser(l.ctx, &user.CreateUserRequest{
+		Name:     "34",
+		UserName: "12",
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &types.RegisterRsp{}, nil
 }

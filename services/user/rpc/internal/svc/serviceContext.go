@@ -8,8 +8,10 @@ import (
 )
 
 type ServiceContext struct {
-	Config    config.Config
-	UserModel models.UserModel
+	Config     config.Config
+	DB         *db.DB
+	UserModel  models.UserModel
+	TokenModel models.TokenModel
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -27,7 +29,9 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		ReadTimeOut:  c.DB.ReadTimeOut,
 	})
 	return &ServiceContext{
-		Config:    c,
-		UserModel: models.NewUserModel(dbInstance.DB),
+		Config:     c,
+		DB:         dbInstance,
+		UserModel:  models.NewUserModel(dbInstance.DB),
+		TokenModel: models.NewTokenModel(dbInstance.DB),
 	}
 }

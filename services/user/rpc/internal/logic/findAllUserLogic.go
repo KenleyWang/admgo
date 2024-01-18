@@ -2,7 +2,6 @@ package logic
 
 import (
 	"context"
-
 	"github.com/admgo/admgo/services/user/rpc/internal/svc"
 	"github.com/admgo/admgo/services/user/rpc/pb"
 
@@ -25,7 +24,23 @@ func NewFindAllUserLogic(ctx context.Context, svcCtx *svc.ServiceContext) *FindA
 
 // FindAllUser 查找所有用户
 func (l *FindAllUserLogic) FindAllUser(in *pb.FindAllUserRequest) (*pb.FindAllUserResponse, error) {
-	// todo: add your logic here and delete this line
+	val, err := l.svcCtx.UserModel.FindAll(l.ctx, 10)
 
-	return &pb.FindAllUserResponse{}, nil
+	if err != nil {
+		return nil, err
+	}
+	var res []*pb.UserItem
+	for _, v := range val {
+		res = append(res, &pb.UserItem{
+			Name:           v.Name,
+			UserName:       v.UserName,
+			Email:          v.Email,
+			Phone:          v.Phone,
+			EmployeeNumber: v.EmployeeNumber,
+		})
+	}
+
+	return &pb.FindAllUserResponse{
+		UserList: res,
+	}, nil
 }

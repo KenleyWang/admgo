@@ -26,7 +26,7 @@ func main() {
 		WriteTimeOut: c.DB.WriteTimeOut,
 		ReadTimeOut:  c.DB.ReadTimeOut,
 	})
-	err := dbInstance.AutoMigrate(&models.User{})
+	err := dbInstance.AutoMigrate(&models.User{}, &models.Token{})
 	if err != nil {
 		panic(err)
 	}

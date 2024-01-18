@@ -8,7 +8,11 @@ import (
 type (
 	userModel interface {
 		Insert(ctx context.Context, data *User) error
+		Find(ctx context.Context, data interface{}) (interface{}, error)
 		FindOne(ctx context.Context, id int64) (*User, error)
+		FindAll(ctx context.Context, limit int) ([]*User, error)
+		FindByFields(ctx context.Context, fields interface{}, limit int) ([]*User, error)
+		Count(ctx context.Context) (int64, error)
 		Update(ctx context.Context, data *User) error
 		FindByUserIDAndPassword(ctx context.Context, username string, password string) (*User, error)
 	}
@@ -46,10 +50,34 @@ func (m *defaultUserModel) Insert(ctx context.Context, data *User) error {
 	return m.db.WithContext(ctx).Create(data).Error
 }
 
+func (m *defaultUserModel) Find(ctx context.Context, data interface{}) (interface{}, error) {
+	u := data
+	err := m.db.WithContext(ctx).Find(u).Error
+	return u, err
+}
+
 func (m *defaultUserModel) FindOne(ctx context.Context, id int64) (*User, error) {
 	var result User
-	err := m.db.WithContext(ctx).Where("id = ?", id).First(&result).Error
+	err := m.db.WithContext(ctx).Model(&User{}).Where("id = ?", id).First(&result).Error
 	return &result, err
+}
+
+func (m *defaultUserModel) FindByFields(ctx context.Context, fields interface{}, limit int) ([]*User, error) {
+	var result []*User
+	err := m.db.WithContext(ctx).Model(&User{}).Where(fields).Limit(limit).Find(&result).Error
+	return result, err
+}
+
+func (m *defaultUserModel) FindAll(ctx context.Context, limit int) ([]*User, error) {
+	var result []*User
+	err := m.db.WithContext(ctx).Model(&User{}).Limit(limit).Find(&result).Error
+	return result, err
+}
+
+func (m *defaultUserModel) Count(ctx context.Context) (int64, error) {
+	var result int64
+	err := m.db.WithContext(ctx).Model(&User{}).Count(&result).Error
+	return result, err
 }
 
 func (m *defaultUserModel) Update(ctx context.Context, data *User) error {

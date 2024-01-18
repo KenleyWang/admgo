@@ -25,7 +25,7 @@ service User {
   // 更新用户员工号
   rpc UpdateUserEmployeeNumber (UpdateUserEmployeeNumberRequest) returns (UpdateUserEmployeeNumberResponse);
 }
-message UserBase {
+message UserItem {
   string name = 1; // 显示名
   string userName = 2; // 用户名
   string phone = 3; // 手机号
@@ -38,19 +38,20 @@ message UserBase {
 message CreateUserRequest {
   string name = 1; // 显示名
   string userName = 2; // 用户名
-  string phone = 3; // 手机号
-  string email = 4; // 邮箱
-  string employeeNumber = 5; // 员工号
+  string password = 3; // 用户名
+  string phone = 4; // 手机号
+  string email = 5; // 邮箱
+  string employeeNumber = 6; // 员工号
 }
 message CreateUserResponse {
 }
 
 message FindSingleUserByUserIDRequest {
-  uint64 userId = 1; // 用户ID
+  uint32 userID = 1; // 用户ID
 }
 
 message FindSingleUserByUserIDResponse {
-  uint64 userID = 1; // 显示名
+  uint32 userID = 1; // 显示名
   string name = 2; // 显示名
   string userName = 3; // 用户名
   string phone = 4; // 手机号
@@ -66,7 +67,7 @@ message FindSingleUserByUsernameAndPasswordRequest {
 }
 
 message FindSingleUserByUsernameAndPasswordResponse {
-  uint64 userID = 1; // 显示名
+  uint32 userID = 1; // 显示名
   string name = 2; // 显示名
   string userName = 3; // 用户名
   string phone = 4; // 手机号
@@ -77,15 +78,15 @@ message FindSingleUserByUsernameAndPasswordResponse {
 }
 
 message FindAllUserRequest {
-  uint64 userId = 1; // 用户ID
+  uint32 userID = 1; // 用户ID
 }
 
 message FindAllUserResponse {
-  repeated UserBase userList = 1;
+  repeated UserItem userList = 1;
 }
 
 message DeleteUserRequest {
-  uint64 userId = 1; // 用户ID
+  uint32 userID = 1; // 用户ID
 }
 
 message DeleteUserResponse {
@@ -101,7 +102,7 @@ message UpdateUserInfoResponse {
 }
 
 message UpdateUserEmailRequest {
-  uint64 userId = 1; // 用户ID
+  uint32 userID = 1; // 用户ID
   string email = 2; // 邮箱
 }
 
@@ -109,7 +110,7 @@ message UpdateUserEmailResponse {
 }
 
 message UpdateUserNameRequest {
-  uint64 userId = 1; // 用户ID
+  uint32 userID = 1; // 用户ID
   string name = 2; // 显示名
 }
 
@@ -117,7 +118,7 @@ message UpdateUserNameResponse {
 }
 
 message UpdateUserPhoneRequest {
-  uint64 userId = 1; // 用户ID
+  uint32 userID = 1; // 用户ID
   string phone = 3; // 手机号
 }
 
@@ -125,7 +126,7 @@ message UpdateUserPhoneResponse {
 }
 
 message UpdateUserEmployeeNumberRequest {
-  uint64 userId = 1; // 用户ID
+  uint32 userID = 1; // 用户ID
   string employeeNumber = 5; // 员工号
 }
 

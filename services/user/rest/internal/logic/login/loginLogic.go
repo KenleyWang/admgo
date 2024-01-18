@@ -59,11 +59,11 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginRsp, err error
 		return nil, errorx.ServerErrForRedis
 	}
 	// 写入该用户所有的session到缓存
-	_, err = l.svcCtx.Redis.SaddCtx(l.ctx, "/"+l.svcCtx.Config.Name+"/rest/sessions/"+strconv.FormatUint(rsp.UserID, 10), l.sessionID)
+	_, err = l.svcCtx.Redis.SaddCtx(l.ctx, "/"+l.svcCtx.Config.Name+"/rest/sessions/"+strconv.Itoa(int(rsp.UserID)), l.sessionID)
 	if err != nil {
 		return nil, errorx.ServerErrForRedis
 	}
-	err = l.svcCtx.Redis.ExpireCtx(l.ctx, "/"+l.svcCtx.Config.Name+"/rest/sessions/"+strconv.FormatUint(rsp.UserID, 10), types.SessionExpireTime)
+	err = l.svcCtx.Redis.ExpireCtx(l.ctx, "/"+l.svcCtx.Config.Name+"/rest/sessions/"+strconv.Itoa(int(rsp.UserID)), types.SessionExpireTime)
 	if err != nil {
 		return nil, errorx.ServerErrForRedis
 	}
@@ -74,7 +74,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginRsp, err error
 }
 
 func (l *LoginLogic) writeToSessionContent(u *user.FindSingleUserByUsernameAndPasswordResponse) {
-	l.sessionContent["user_id"] = strconv.FormatUint(u.UserID, 10)
+	l.sessionContent["user_id"] = strconv.Itoa(int(u.UserID))
 	currentTime := time.Now()
 	formattedTime := currentTime.Format("2006-01-02 15:04:05")
 	l.sessionContent["login_at"] = formattedTime
