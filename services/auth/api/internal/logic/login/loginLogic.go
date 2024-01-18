@@ -52,7 +52,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginRsp, err error
 }
 
 func (l *LoginLogic) writeToSessionContent(u *user.FindSingleUserByUsernameAndPasswordResponse) {
-	l.sessionContent["user_id"] = strconv.FormatUint(u.UserID, 10)
+	l.sessionContent["user_id"] = strconv.FormatUint(uint64(u.UserID), 10)
 	l.sessionContent["user_name"] = u.UserName
 }
 
