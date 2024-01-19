@@ -36,13 +36,13 @@ type (
 )
 
 func (emp User) TableName() string {
-	return ModelPrefix + "_" + "users"
+	return TablePrefix + "_" + "users"
 }
 
 func newUserModel(conn *gorm.DB) *defaultUserModel {
 	return &defaultUserModel{
 		db:        conn,
-		tableName: ModelPrefix + "_" + "users",
+		tableName: TablePrefix + "_" + "users",
 	}
 }
 

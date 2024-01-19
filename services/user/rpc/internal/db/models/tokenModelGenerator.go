@@ -31,13 +31,13 @@ type (
 )
 
 func (emp Token) TableName() string {
-	return ModelPrefix + "_" + "tokens"
+	return TablePrefix + "_" + "tokens"
 }
 
 func newTokenModel(conn *gorm.DB) *defaultTokenModel {
 	return &defaultTokenModel{
 		db:        conn,
-		tableName: ModelPrefix + "_" + "tokens",
+		tableName: TablePrefix + "_" + "tokens",
 	}
 }
 

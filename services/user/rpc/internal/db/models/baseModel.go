@@ -12,4 +12,4 @@ type (
 	}
 )
 
-const ModelPrefix = "user"
+const TablePrefix = "user"
