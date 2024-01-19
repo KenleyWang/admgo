@@ -25,13 +25,13 @@ type (
 )
 
 func (emp Model) TableName() string {
-	return ModelPrefix + "_" + "models"
+	return TablePrefix + "_" + "models"
 }
 
 func newModelModel(conn *gorm.DB) *defaultModelModel {
 	return &defaultModelModel{
 		db:        conn,
-		tableName: ModelPrefix + "_" + "models",
+		tableName: TablePrefix + "_" + "models",
 	}
 }
 

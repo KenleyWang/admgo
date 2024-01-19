@@ -25,13 +25,13 @@ type (
 )
 
 func (emp Category) TableName() string {
-	return ModelPrefix + "_" + "categorys"
+	return TablePrefix + "_" + "categorys"
 }
 
 func newCategoryModel(conn *gorm.DB) *defaultCategoryModel {
 	return &defaultCategoryModel{
 		db:        conn,
-		tableName: ModelPrefix + "_" + "categorys",
+		tableName: TablePrefix + "_" + "categorys",
 	}
 }
 
