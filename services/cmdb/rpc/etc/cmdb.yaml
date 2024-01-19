@@ -1,6 +1,16 @@
-Name: cmdb.rpc
-ListenOn: 0.0.0.0:8080
-Etcd:
-  Hosts:
-  - 127.0.0.1:2379
-  Key: cmdb.rpc
+name: cmdb.rpc
+listenOn: 0.0.0.0:9703
+mode: dev
+db:
+  host: "10.17.25.162"
+  port: "3306"
+  database: "admgo"
+  username: "admgo"
+  password: "m9uSFL7duAVXfeAwGUSG"
+  charset: "utf8mb4"
+  timeout: 50000  # connect db timeout, unit: ms
+  write_timeout: 50000  # write data timeout, unit: ms
+  read_timeout: 50000  # read data timeout, unit: ms
+  max_lifetime: 3600
+  max_idle_conns: 5  # the max idle connect count
+  max_open_conns: 1000  # the max open connect count
