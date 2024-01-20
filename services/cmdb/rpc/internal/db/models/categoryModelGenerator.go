@@ -19,8 +19,9 @@ type (
 
 	Category struct {
 		BaseModel
-		Name         string `gorm:"column:name;type:varchar(30);not null;comment:显示名"`
-		CategoryName string `gorm:"column:category_name;type:varchar(30);not null;unique;comment:类别名(唯一)"`
+		Name            string `gorm:"column:name;type:varchar(30);not null;comment:显示名"`
+		CategoryName    string `gorm:"column:category_name;type:varchar(30);not null;unique;comment:类别名(唯一)"`
+		ResourceGroupID string `gorm:"column:resource_group_id;type:int unsigned;not null;comment:资源组ID"`
 	}
 )
 
