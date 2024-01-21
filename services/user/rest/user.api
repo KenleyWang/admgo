@@ -14,3 +14,5 @@ import (
 	"api/token.api"
 )
 
+// goctl api --api ./user.api go -dir ./ --style goZero
+
