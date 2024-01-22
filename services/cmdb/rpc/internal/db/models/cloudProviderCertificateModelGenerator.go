@@ -28,13 +28,13 @@ type (
 )
 
 func (emp CloudProviderCertificate) TableName() string {
-	return TablePrefix + "_" + "cloudProviderCertificates"
+	return TablePrefix + "_" + "cloud_provider_certificates"
 }
 
 func newCloudProviderCertificateModel(conn *gorm.DB) *defaultCloudProviderCertificateModel {
 	return &defaultCloudProviderCertificateModel{
 		db:        conn,
-		tableName: TablePrefix + "_" + "cloudProviderCertificates",
+		tableName: TablePrefix + "_" + "cloud_provider_certificates",
 	}
 }
 

@@ -25,13 +25,13 @@ type (
 )
 
 func (emp CloudProvider) TableName() string {
-	return TablePrefix + "_" + "cloudProviders"
+	return TablePrefix + "_" + "cloud_providers"
 }
 
 func newCloudProviderModel(conn *gorm.DB) *defaultCloudProviderModel {
 	return &defaultCloudProviderModel{
 		db:        conn,
-		tableName: TablePrefix + "_" + "cloudProviders",
+		tableName: TablePrefix + "_" + "cloud_providers",
 	}
 }
 
