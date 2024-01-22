@@ -26,7 +26,13 @@ func main() {
 		WriteTimeOut: c.DB.WriteTimeOut,
 		ReadTimeOut:  c.DB.ReadTimeOut,
 	})
-	err := dbInstance.AutoMigrate(&models.Model{}, &models.Category{}, &models.ResourceGroup{})
+	err := dbInstance.AutoMigrate(
+		&models.Model{},
+		&models.Category{},
+		&models.ResourceGroup{},
+		&models.CloudProvider{},
+		&models.CloudProviderCertificate{},
+	)
 	if err != nil {
 		panic(err)
 	}
