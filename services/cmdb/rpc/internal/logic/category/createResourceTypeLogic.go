@@ -1,10 +1,10 @@
-package resourcetypelogic
+package categorylogic
 
 import (
 	"context"
 
 	"github.com/admgo/admgo/services/cmdb/rpc/internal/svc"
-	"github.com/admgo/admgo/services/cmdb/rpc/pb"
+	"github.com/admgo/admgo/services/cmdb/rpc/pb/pb"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -24,8 +24,8 @@ func NewCreateResourceTypeLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 }
 
 // 创建资源类型
-func (l *CreateResourceTypeLogic) CreateResourceType(in *pb.CreateResourceTypeRequest) (*pb.CreateResourceTypeResponse, error) {
+func (l *CreateResourceTypeLogic) CreateResourceType(in *pb.CreateCategoryRequest) (*pb.CreateCategoryResponse, error) {
 	// todo: add your logic here and delete this line
 
-	return &pb.CreateResourceTypeResponse{}, nil
+	return &pb.CreateCategoryResponse{}, nil
 }

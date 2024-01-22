@@ -111,91 +111,91 @@ var ResourceGroup_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	ResourceType_CreateResourceType_FullMethodName = "/service.ResourceType/CreateResourceType"
+	Category_CreateResourceType_FullMethodName = "/service.Category/CreateResourceType"
 )
 
-// ResourceTypeClient is the client API for ResourceType service.
+// CategoryClient is the client API for Category service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ResourceTypeClient interface {
+type CategoryClient interface {
 	// 创建资源类型
-	CreateResourceType(ctx context.Context, in *CreateResourceTypeRequest, opts ...grpc.CallOption) (*CreateResourceTypeResponse, error)
+	CreateResourceType(ctx context.Context, in *CreateCategoryRequest, opts ...grpc.CallOption) (*CreateCategoryResponse, error)
 }
 
-type resourceTypeClient struct {
+type categoryClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewResourceTypeClient(cc grpc.ClientConnInterface) ResourceTypeClient {
-	return &resourceTypeClient{cc}
+func NewCategoryClient(cc grpc.ClientConnInterface) CategoryClient {
+	return &categoryClient{cc}
 }
 
-func (c *resourceTypeClient) CreateResourceType(ctx context.Context, in *CreateResourceTypeRequest, opts ...grpc.CallOption) (*CreateResourceTypeResponse, error) {
-	out := new(CreateResourceTypeResponse)
-	err := c.cc.Invoke(ctx, ResourceType_CreateResourceType_FullMethodName, in, out, opts...)
+func (c *categoryClient) CreateResourceType(ctx context.Context, in *CreateCategoryRequest, opts ...grpc.CallOption) (*CreateCategoryResponse, error) {
+	out := new(CreateCategoryResponse)
+	err := c.cc.Invoke(ctx, Category_CreateResourceType_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ResourceTypeServer is the server API for ResourceType service.
-// All implementations must embed UnimplementedResourceTypeServer
+// CategoryServer is the server API for Category service.
+// All implementations must embed UnimplementedCategoryServer
 // for forward compatibility
-type ResourceTypeServer interface {
+type CategoryServer interface {
 	// 创建资源类型
-	CreateResourceType(context.Context, *CreateResourceTypeRequest) (*CreateResourceTypeResponse, error)
-	mustEmbedUnimplementedResourceTypeServer()
+	CreateResourceType(context.Context, *CreateCategoryRequest) (*CreateCategoryResponse, error)
+	mustEmbedUnimplementedCategoryServer()
 }
 
-// UnimplementedResourceTypeServer must be embedded to have forward compatible implementations.
-type UnimplementedResourceTypeServer struct {
+// UnimplementedCategoryServer must be embedded to have forward compatible implementations.
+type UnimplementedCategoryServer struct {
 }
 
-func (UnimplementedResourceTypeServer) CreateResourceType(context.Context, *CreateResourceTypeRequest) (*CreateResourceTypeResponse, error) {
+func (UnimplementedCategoryServer) CreateResourceType(context.Context, *CreateCategoryRequest) (*CreateCategoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateResourceType not implemented")
 }
-func (UnimplementedResourceTypeServer) mustEmbedUnimplementedResourceTypeServer() {}
+func (UnimplementedCategoryServer) mustEmbedUnimplementedCategoryServer() {}
 
-// UnsafeResourceTypeServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ResourceTypeServer will
+// UnsafeCategoryServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CategoryServer will
 // result in compilation errors.
-type UnsafeResourceTypeServer interface {
-	mustEmbedUnimplementedResourceTypeServer()
+type UnsafeCategoryServer interface {
+	mustEmbedUnimplementedCategoryServer()
 }
 
-func RegisterResourceTypeServer(s grpc.ServiceRegistrar, srv ResourceTypeServer) {
-	s.RegisterService(&ResourceType_ServiceDesc, srv)
+func RegisterCategoryServer(s grpc.ServiceRegistrar, srv CategoryServer) {
+	s.RegisterService(&Category_ServiceDesc, srv)
 }
 
-func _ResourceType_CreateResourceType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateResourceTypeRequest)
+func _Category_CreateResourceType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCategoryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ResourceTypeServer).CreateResourceType(ctx, in)
+		return srv.(CategoryServer).CreateResourceType(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ResourceType_CreateResourceType_FullMethodName,
+		FullMethod: Category_CreateResourceType_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ResourceTypeServer).CreateResourceType(ctx, req.(*CreateResourceTypeRequest))
+		return srv.(CategoryServer).CreateResourceType(ctx, req.(*CreateCategoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// ResourceType_ServiceDesc is the grpc.ServiceDesc for ResourceType service.
+// Category_ServiceDesc is the grpc.ServiceDesc for Category service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var ResourceType_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "service.ResourceType",
-	HandlerType: (*ResourceTypeServer)(nil),
+var Category_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "service.Category",
+	HandlerType: (*CategoryServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateResourceType",
-			Handler:    _ResourceType_CreateResourceType_Handler,
+			Handler:    _Category_CreateResourceType_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -203,91 +203,91 @@ var ResourceType_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	ResourceModel_CreateResourceModel_FullMethodName = "/service.ResourceModel/CreateResourceModel"
+	Model_CreateResourceModel_FullMethodName = "/service.Model/CreateResourceModel"
 )
 
-// ResourceModelClient is the client API for ResourceModel service.
+// ModelClient is the client API for Model service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ResourceModelClient interface {
+type ModelClient interface {
 	// 创建资源模型
-	CreateResourceModel(ctx context.Context, in *CreateResourceModelRequest, opts ...grpc.CallOption) (*CreateResourceModelResponse, error)
+	CreateResourceModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelResponse, error)
 }
 
-type resourceModelClient struct {
+type modelClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewResourceModelClient(cc grpc.ClientConnInterface) ResourceModelClient {
-	return &resourceModelClient{cc}
+func NewModelClient(cc grpc.ClientConnInterface) ModelClient {
+	return &modelClient{cc}
 }
 
-func (c *resourceModelClient) CreateResourceModel(ctx context.Context, in *CreateResourceModelRequest, opts ...grpc.CallOption) (*CreateResourceModelResponse, error) {
-	out := new(CreateResourceModelResponse)
-	err := c.cc.Invoke(ctx, ResourceModel_CreateResourceModel_FullMethodName, in, out, opts...)
+func (c *modelClient) CreateResourceModel(ctx context.Context, in *CreateModelRequest, opts ...grpc.CallOption) (*CreateModelResponse, error) {
+	out := new(CreateModelResponse)
+	err := c.cc.Invoke(ctx, Model_CreateResourceModel_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ResourceModelServer is the server API for ResourceModel service.
-// All implementations must embed UnimplementedResourceModelServer
+// ModelServer is the server API for Model service.
+// All implementations must embed UnimplementedModelServer
 // for forward compatibility
-type ResourceModelServer interface {
+type ModelServer interface {
 	// 创建资源模型
-	CreateResourceModel(context.Context, *CreateResourceModelRequest) (*CreateResourceModelResponse, error)
-	mustEmbedUnimplementedResourceModelServer()
+	CreateResourceModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error)
+	mustEmbedUnimplementedModelServer()
 }
 
-// UnimplementedResourceModelServer must be embedded to have forward compatible implementations.
-type UnimplementedResourceModelServer struct {
+// UnimplementedModelServer must be embedded to have forward compatible implementations.
+type UnimplementedModelServer struct {
 }
 
-func (UnimplementedResourceModelServer) CreateResourceModel(context.Context, *CreateResourceModelRequest) (*CreateResourceModelResponse, error) {
+func (UnimplementedModelServer) CreateResourceModel(context.Context, *CreateModelRequest) (*CreateModelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateResourceModel not implemented")
 }
-func (UnimplementedResourceModelServer) mustEmbedUnimplementedResourceModelServer() {}
+func (UnimplementedModelServer) mustEmbedUnimplementedModelServer() {}
 
-// UnsafeResourceModelServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ResourceModelServer will
+// UnsafeModelServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ModelServer will
 // result in compilation errors.
-type UnsafeResourceModelServer interface {
-	mustEmbedUnimplementedResourceModelServer()
+type UnsafeModelServer interface {
+	mustEmbedUnimplementedModelServer()
 }
 
-func RegisterResourceModelServer(s grpc.ServiceRegistrar, srv ResourceModelServer) {
-	s.RegisterService(&ResourceModel_ServiceDesc, srv)
+func RegisterModelServer(s grpc.ServiceRegistrar, srv ModelServer) {
+	s.RegisterService(&Model_ServiceDesc, srv)
 }
 
-func _ResourceModel_CreateResourceModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateResourceModelRequest)
+func _Model_CreateResourceModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateModelRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ResourceModelServer).CreateResourceModel(ctx, in)
+		return srv.(ModelServer).CreateResourceModel(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ResourceModel_CreateResourceModel_FullMethodName,
+		FullMethod: Model_CreateResourceModel_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ResourceModelServer).CreateResourceModel(ctx, req.(*CreateResourceModelRequest))
+		return srv.(ModelServer).CreateResourceModel(ctx, req.(*CreateModelRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// ResourceModel_ServiceDesc is the grpc.ServiceDesc for ResourceModel service.
+// Model_ServiceDesc is the grpc.ServiceDesc for Model service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var ResourceModel_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "service.ResourceModel",
-	HandlerType: (*ResourceModelServer)(nil),
+var Model_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "service.Model",
+	HandlerType: (*ModelServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateResourceModel",
-			Handler:    _ResourceModel_CreateResourceModel_Handler,
+			Handler:    _Model_CreateResourceModel_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -295,91 +295,91 @@ var ResourceModel_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	ResourceAttribute_CreateResourceAttribute_FullMethodName = "/service.ResourceAttribute/CreateResourceAttribute"
+	Attribute_CreateResourceAttribute_FullMethodName = "/service.Attribute/CreateResourceAttribute"
 )
 
-// ResourceAttributeClient is the client API for ResourceAttribute service.
+// AttributeClient is the client API for Attribute service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ResourceAttributeClient interface {
+type AttributeClient interface {
 	// 创建资源属性
-	CreateResourceAttribute(ctx context.Context, in *CreateResourceAttributeRequest, opts ...grpc.CallOption) (*CreateResourceAttributeResponse, error)
+	CreateResourceAttribute(ctx context.Context, in *CreateAttributeRequest, opts ...grpc.CallOption) (*CreateAttributeResponse, error)
 }
 
-type resourceAttributeClient struct {
+type attributeClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewResourceAttributeClient(cc grpc.ClientConnInterface) ResourceAttributeClient {
-	return &resourceAttributeClient{cc}
+func NewAttributeClient(cc grpc.ClientConnInterface) AttributeClient {
+	return &attributeClient{cc}
 }
 
-func (c *resourceAttributeClient) CreateResourceAttribute(ctx context.Context, in *CreateResourceAttributeRequest, opts ...grpc.CallOption) (*CreateResourceAttributeResponse, error) {
-	out := new(CreateResourceAttributeResponse)
-	err := c.cc.Invoke(ctx, ResourceAttribute_CreateResourceAttribute_FullMethodName, in, out, opts...)
+func (c *attributeClient) CreateResourceAttribute(ctx context.Context, in *CreateAttributeRequest, opts ...grpc.CallOption) (*CreateAttributeResponse, error) {
+	out := new(CreateAttributeResponse)
+	err := c.cc.Invoke(ctx, Attribute_CreateResourceAttribute_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ResourceAttributeServer is the server API for ResourceAttribute service.
-// All implementations must embed UnimplementedResourceAttributeServer
+// AttributeServer is the server API for Attribute service.
+// All implementations must embed UnimplementedAttributeServer
 // for forward compatibility
-type ResourceAttributeServer interface {
+type AttributeServer interface {
 	// 创建资源属性
-	CreateResourceAttribute(context.Context, *CreateResourceAttributeRequest) (*CreateResourceAttributeResponse, error)
-	mustEmbedUnimplementedResourceAttributeServer()
+	CreateResourceAttribute(context.Context, *CreateAttributeRequest) (*CreateAttributeResponse, error)
+	mustEmbedUnimplementedAttributeServer()
 }
 
-// UnimplementedResourceAttributeServer must be embedded to have forward compatible implementations.
-type UnimplementedResourceAttributeServer struct {
+// UnimplementedAttributeServer must be embedded to have forward compatible implementations.
+type UnimplementedAttributeServer struct {
 }
 
-func (UnimplementedResourceAttributeServer) CreateResourceAttribute(context.Context, *CreateResourceAttributeRequest) (*CreateResourceAttributeResponse, error) {
+func (UnimplementedAttributeServer) CreateResourceAttribute(context.Context, *CreateAttributeRequest) (*CreateAttributeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateResourceAttribute not implemented")
 }
-func (UnimplementedResourceAttributeServer) mustEmbedUnimplementedResourceAttributeServer() {}
+func (UnimplementedAttributeServer) mustEmbedUnimplementedAttributeServer() {}
 
-// UnsafeResourceAttributeServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ResourceAttributeServer will
+// UnsafeAttributeServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AttributeServer will
 // result in compilation errors.
-type UnsafeResourceAttributeServer interface {
-	mustEmbedUnimplementedResourceAttributeServer()
+type UnsafeAttributeServer interface {
+	mustEmbedUnimplementedAttributeServer()
 }
 
-func RegisterResourceAttributeServer(s grpc.ServiceRegistrar, srv ResourceAttributeServer) {
-	s.RegisterService(&ResourceAttribute_ServiceDesc, srv)
+func RegisterAttributeServer(s grpc.ServiceRegistrar, srv AttributeServer) {
+	s.RegisterService(&Attribute_ServiceDesc, srv)
 }
 
-func _ResourceAttribute_CreateResourceAttribute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateResourceAttributeRequest)
+func _Attribute_CreateResourceAttribute_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAttributeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ResourceAttributeServer).CreateResourceAttribute(ctx, in)
+		return srv.(AttributeServer).CreateResourceAttribute(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ResourceAttribute_CreateResourceAttribute_FullMethodName,
+		FullMethod: Attribute_CreateResourceAttribute_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ResourceAttributeServer).CreateResourceAttribute(ctx, req.(*CreateResourceAttributeRequest))
+		return srv.(AttributeServer).CreateResourceAttribute(ctx, req.(*CreateAttributeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// ResourceAttribute_ServiceDesc is the grpc.ServiceDesc for ResourceAttribute service.
+// Attribute_ServiceDesc is the grpc.ServiceDesc for Attribute service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var ResourceAttribute_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "service.ResourceAttribute",
-	HandlerType: (*ResourceAttributeServer)(nil),
+var Attribute_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "service.Attribute",
+	HandlerType: (*AttributeServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateResourceAttribute",
-			Handler:    _ResourceAttribute_CreateResourceAttribute_Handler,
+			Handler:    _Attribute_CreateResourceAttribute_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

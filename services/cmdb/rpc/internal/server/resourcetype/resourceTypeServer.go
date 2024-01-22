@@ -8,7 +8,7 @@ import (
 
 	"github.com/admgo/admgo/services/cmdb/rpc/internal/logic/resourcetype"
 	"github.com/admgo/admgo/services/cmdb/rpc/internal/svc"
-	"github.com/admgo/admgo/services/cmdb/rpc/pb"
+	"github.com/admgo/admgo/services/cmdb/rpc/pb/pb"
 )
 
 type ResourceTypeServer struct {
@@ -23,7 +23,7 @@ func NewResourceTypeServer(svcCtx *svc.ServiceContext) *ResourceTypeServer {
 }
 
 // 创建资源类型
-func (s *ResourceTypeServer) CreateResourceType(ctx context.Context, in *pb.CreateResourceTypeRequest) (*pb.CreateResourceTypeResponse, error) {
+func (s *ResourceTypeServer) CreateResourceType(ctx context.Context, in *pb.CreateCategoryRequest) (*pb.CreateCategoryResponse, error) {
 	l := resourcetypelogic.NewCreateResourceTypeLogic(ctx, s.svcCtx)
 	return l.CreateResourceType(in)
 }

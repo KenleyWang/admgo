@@ -6,25 +6,25 @@ package resourcegroup
 import (
 	"context"
 
-	"github.com/admgo/admgo/services/cmdb/rpc/pb"
+	"github.com/admgo/admgo/services/cmdb/rpc/pb/pb"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"
 )
 
 type (
-	CreateAttributeTypeRequest      = pb.CreateAttributeTypeRequest
-	CreateAttributeTypeResponse     = pb.CreateAttributeTypeResponse
-	CreateResourceAttributeRequest  = pb.CreateResourceAttributeRequest
-	CreateResourceAttributeResponse = pb.CreateResourceAttributeResponse
-	CreateResourceGroupRequest      = pb.CreateResourceGroupRequest
-	CreateResourceGroupResponse     = pb.CreateResourceGroupResponse
-	CreateResourceModelRequest      = pb.CreateResourceModelRequest
-	CreateResourceModelResponse     = pb.CreateResourceModelResponse
-	CreateResourceRequest           = pb.CreateResourceRequest
-	CreateResourceResponse          = pb.CreateResourceResponse
-	CreateResourceTypeRequest       = pb.CreateResourceTypeRequest
-	CreateResourceTypeResponse      = pb.CreateResourceTypeResponse
+	CreateAttributeRequest      = pb.CreateAttributeRequest
+	CreateAttributeResponse     = pb.CreateAttributeResponse
+	CreateAttributeTypeRequest  = pb.CreateAttributeTypeRequest
+	CreateAttributeTypeResponse = pb.CreateAttributeTypeResponse
+	CreateCategoryRequest       = pb.CreateCategoryRequest
+	CreateCategoryResponse      = pb.CreateCategoryResponse
+	CreateModelRequest          = pb.CreateModelRequest
+	CreateModelResponse         = pb.CreateModelResponse
+	CreateResourceGroupRequest  = pb.CreateResourceGroupRequest
+	CreateResourceGroupResponse = pb.CreateResourceGroupResponse
+	CreateResourceRequest       = pb.CreateResourceRequest
+	CreateResourceResponse      = pb.CreateResourceResponse
 
 	ResourceGroup interface {
 		// 创建资源组

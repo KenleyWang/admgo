@@ -8,7 +8,7 @@ import (
 
 	"github.com/admgo/admgo/services/cmdb/rpc/internal/logic/resourcemodel"
 	"github.com/admgo/admgo/services/cmdb/rpc/internal/svc"
-	"github.com/admgo/admgo/services/cmdb/rpc/pb"
+	"github.com/admgo/admgo/services/cmdb/rpc/pb/pb"
 )
 
 type ResourceModelServer struct {
@@ -23,7 +23,7 @@ func NewResourceModelServer(svcCtx *svc.ServiceContext) *ResourceModelServer {
 }
 
 // 创建资源模型
-func (s *ResourceModelServer) CreateResourceModel(ctx context.Context, in *pb.CreateResourceModelRequest) (*pb.CreateResourceModelResponse, error) {
+func (s *ResourceModelServer) CreateResourceModel(ctx context.Context, in *pb.CreateModelRequest) (*pb.CreateModelResponse, error) {
 	l := resourcemodellogic.NewCreateResourceModelLogic(ctx, s.svcCtx)
 	return l.CreateResourceModel(in)
 }

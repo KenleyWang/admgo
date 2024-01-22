@@ -8,7 +8,7 @@ import (
 
 	"github.com/admgo/admgo/services/cmdb/rpc/internal/logic/resourceattribute"
 	"github.com/admgo/admgo/services/cmdb/rpc/internal/svc"
-	"github.com/admgo/admgo/services/cmdb/rpc/pb"
+	"github.com/admgo/admgo/services/cmdb/rpc/pb/pb"
 )
 
 type ResourceAttributeServer struct {
@@ -23,7 +23,7 @@ func NewResourceAttributeServer(svcCtx *svc.ServiceContext) *ResourceAttributeSe
 }
 
 // 创建资源属性
-func (s *ResourceAttributeServer) CreateResourceAttribute(ctx context.Context, in *pb.CreateResourceAttributeRequest) (*pb.CreateResourceAttributeResponse, error) {
+func (s *ResourceAttributeServer) CreateResourceAttribute(ctx context.Context, in *pb.CreateAttributeRequest) (*pb.CreateAttributeResponse, error) {
 	l := resourceattributelogic.NewCreateResourceAttributeLogic(ctx, s.svcCtx)
 	return l.CreateResourceAttribute(in)
 }

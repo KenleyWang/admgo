@@ -8,7 +8,7 @@ import (
 
 	"github.com/admgo/admgo/services/cmdb/rpc/internal/logic/resourcegroup"
 	"github.com/admgo/admgo/services/cmdb/rpc/internal/svc"
-	"github.com/admgo/admgo/services/cmdb/rpc/pb"
+	"github.com/admgo/admgo/services/cmdb/rpc/pb/pb"
 )
 
 type ResourceGroupServer struct {
