@@ -23,7 +23,7 @@ func NewCreateResourceModelLogic(ctx context.Context, svcCtx *svc.ServiceContext
 	}
 }
 
-// 创建资源模型
+// CreateResourceModel 创建资源模型
 func (l *CreateResourceModelLogic) CreateResourceModel(in *pb.CreateModelRequest) (*pb.CreateModelResponse, error) {
 	// todo: add your logic here and delete this line
 

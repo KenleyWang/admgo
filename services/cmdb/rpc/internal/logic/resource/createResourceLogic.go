@@ -23,7 +23,7 @@ func NewCreateResourceLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Cr
 	}
 }
 
-// 创建资源
+// CreateResource 创建资源
 func (l *CreateResourceLogic) CreateResource(in *pb.CreateResourceRequest) (*pb.CreateResourceResponse, error) {
 	// todo: add your logic here and delete this line
 

@@ -23,7 +23,7 @@ func NewCreateResourceAttributeLogic(ctx context.Context, svcCtx *svc.ServiceCon
 	}
 }
 
-// 创建资源属性
+// CreateResourceAttribute 创建资源属性
 func (l *CreateResourceAttributeLogic) CreateResourceAttribute(in *pb.CreateAttributeRequest) (*pb.CreateAttributeResponse, error) {
 	// todo: add your logic here and delete this line
 

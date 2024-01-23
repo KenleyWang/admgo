@@ -23,7 +23,7 @@ func NewCreateResourceGroupLogic(ctx context.Context, svcCtx *svc.ServiceContext
 	}
 }
 
-// 创建资源组
+// CreateResourceGroup 创建资源组
 func (l *CreateResourceGroupLogic) CreateResourceGroup(in *pb.CreateResourceGroupRequest) (*pb.CreateResourceGroupResponse, error) {
 	// todo: add your logic here and delete this line
 

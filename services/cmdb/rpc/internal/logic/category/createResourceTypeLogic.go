@@ -23,7 +23,7 @@ func NewCreateResourceTypeLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 	}
 }
 
-// 创建资源类型
+// CreateResourceType 创建资源类型
 func (l *CreateResourceTypeLogic) CreateResourceType(in *pb.CreateCategoryRequest) (*pb.CreateCategoryResponse, error) {
 	// todo: add your logic here and delete this line
 
