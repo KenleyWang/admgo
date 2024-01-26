@@ -25,7 +25,6 @@ func NewCreateAttributeTypeLogic(ctx context.Context, svcCtx *svc.ServiceContext
 
 // CreateAttributeType 创建资源属性类型
 func (l *CreateAttributeTypeLogic) CreateAttributeType(in *pb.CreateAttributeTypeRequest) (*pb.CreateAttributeTypeResponse, error) {
-	// todo: add your logic here and delete this line
 
 	return &pb.CreateAttributeTypeResponse{}, nil
 }
